@@ -7,29 +7,54 @@
   <script src="colors.js"></script>
 </head>
 <body>
-  <h1><a href="index.html">WEB</a></h1>
+  <h1><a href="index.html">WEB-환장이다</a></h1>
   <input id="night_day" type="button" value="night" onclick="
     nightDayHandler(this);
   ">
-  <ol>
-    <li><a onClick="fetch('html').then(function(response){
-      response.text().then(function(text){
-        document.querySelector('article').innerHTML = text;
+ <ol id="nav">
+  <!-- <li><a href="#!html" onclick="fetchPage('html')">html</a></li>
+  <li><a href="#!css" onclick="fetchPage('css')">css</a></li>
+  <li><a href="#!javascript" onclick="fetchPage('javascript')">javascript</a></li> -->
+</ol>
+  <article>
+
+  </article>
+  <script>
+    function fetchPage(name){
+      fetch(name).then(function(response){
+        response.text().then(function(text){
+          document.querySelector('article').innerHTML = text;
+        })
       })
-    })">HTML</a></li>
-    <li><a onClick="fetch('css').then(function(response){
-      response.text().then(function(text){
-        document.querySelector('article').innerHTML = text;
-      })
-    })">CSS</a></li>
-    <li><a onClick="fetch('JavaScript').then(function(response){
-      response.text().then(function(text){
-        document.querySelector('article').innerHTML = text;
-      })
-    })">JavaScript</a></li>
-  </ol>
-  <h2>WEB</h2>
-  <p>The World Wide Web 지랄아
-  </p>
+    }
+    if(location.hash){
+      fetchPage(location.hash.substr(2));
+    }else{
+      fetchPage('wellcome')
+    }
+
+      fetch('list').then(function(response){
+        response.text().then(function(text){
+           console.log(text);
+       var items = text.split(',');
+       var i = 0;
+       var tags='';
+       while(i<items.length){
+         var item=items[i];
+         item = item.trim();
+         console.log(item);
+         // <li><a href="#!html" onclick="fetchPage('html')">html</a></li>
+         var tag = '<li><a href="#!'+item+'" onclick="fetchPage(\''+item+'\')">'+item+'</a></li>';
+         console.log(tag);
+         tags = tags + tag;
+         i = i + 1;
+       }
+       console.log(items);
+          document.querySelector('#nav').innerHTML = tags;
+        })
+      });
+
+  </script>
+
 </body>
 </html>
