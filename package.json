@@ -11,6 +11,6 @@
   "description": "",
   "dependencies": {
     "create-react-app": "^2.1.8",
-    "npm": "^6.13.2"
+    "npm": "^6.14.6"
   }
 }
